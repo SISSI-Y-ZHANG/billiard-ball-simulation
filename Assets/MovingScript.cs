@@ -16,7 +16,7 @@ public class MovingScript : BallScript
     // -------------------------------------- steering -------------------------------------- //
     Vector3 lastPosition;
     Vector3 movingDirection; // normalized directional vector
-    float movingIncrement; // scalar for movingDirection; represents speed (from logic scipt)
+    double movingIncrement; // scalar for movingDirection; represents speed (from logic scipt)
     Vector3 positionIncrement; // change added to lastPosition
 
     double steeringAngle; // sum of (partitioned) steeringAngleDelta, used to determine movingDirection
@@ -97,7 +97,7 @@ public class MovingScript : BallScript
         movingDirection.x = (float) Math.Cos(steeringAngle);
         movingDirection.y = (float) Math.Sin(steeringAngle);
         
-        positionIncrement = movingDirection * movingIncrement * Time.timeScale;
+        positionIncrement = movingDirection * (float) movingIncrement * Time.timeScale;
         //Debug.Log("steering angle: " + steeringAngle);
         KeepPositionInBoundary();
 

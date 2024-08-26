@@ -207,15 +207,30 @@ public class LogicScript : MonoBehaviour
     void ResetGame()
     {
         spawner.DeleteAllBall();
+        ReadInput();
         ValidateInput();
         spawner.SpawnNewBall();
 
         ResumeGame();
     }
 
-    // --------------------------------------  -------------------------------------- //
-
     // -------------------------------------- Inputs -------------------------------------- //
+
+    void ReadInput() 
+    {
+        regularBallQuantity = int.Parse(ConfigurationManager.AppSettings["_regularBallQuantity"]);
+        randomizeBallSize = bool.Parse(ConfigurationManager.AppSettings["_randomizeBallSize"]);
+        velocityConstant = float.Parse(ConfigurationManager.AppSettings["_velocityConstant"]);
+        diameterConstant = float.Parse(ConfigurationManager.AppSettings["_diameterConstant"]);
+
+        specialBallQuantity = int.Parse(ConfigurationManager.AppSettings["_specialBallQuantity"]);
+        forceType = (ForceType) Enum.Parse(typeof(ForceType), ConfigurationManager.AppSettings["_forceType"]);
+        forceConstant = float.Parse(ConfigurationManager.AppSettings["_forceConstant"]);
+        forceRadius = float.Parse(ConfigurationManager.AppSettings["_forceRadius"]);
+        movingIncrement = double.Parse(ConfigurationManager.AppSettings["_movingIncrement"]);
+        angleIncrement = double.Parse(ConfigurationManager.AppSettings["_angleIncrement"]);
+        colorSpecialBall = bool.Parse(ConfigurationManager.AppSettings["_colorSpecialBall"]);
+    }
 
     void ValidateInput()
     {
