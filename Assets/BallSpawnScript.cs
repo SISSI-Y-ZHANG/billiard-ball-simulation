@@ -8,6 +8,10 @@ using UnityEngine;
 public class BallSpawnScript : MonoBehaviour
 {   
     LogicScript logic;
+    public void SetLogic()
+    {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+    }
 
     // -------------------------------------- parameters -------------------------------------- //
 
@@ -43,7 +47,7 @@ public class BallSpawnScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        SetLogic();
     }
 
     // Update is called once per frame
@@ -102,11 +106,15 @@ public class BallSpawnScript : MonoBehaviour
         specialBallNameCount = 0;
 
         ballQuantity = 0;
-        logic.UpdateQuantity(ballQuantity);
 
-        logic.InitTotalMomentum = 0;
-        logic.LastTotalMomentum = 0;
-        logic.CurTotalMomentum = 0;
+        if (logic != null) 
+        {
+            logic.UpdateQuantity(ballQuantity);
+
+            logic.InitTotalMomentum = 0;
+            logic.LastTotalMomentum = 0;
+            logic.CurTotalMomentum = 0;
+        }
     }
 
     // -------------------------------------- special ball -------------------------------------- //

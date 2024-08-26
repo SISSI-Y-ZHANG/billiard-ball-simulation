@@ -19,7 +19,7 @@ public class LogicScript : MonoBehaviour
     // -------------------------------------- GUI -------------------------------------- //
 
     [SerializeField] GameObject pauseMenu;
-    bool paused;
+    bool paused = false;
     public bool Paused 
     {
         get { return paused; }
@@ -142,8 +142,8 @@ public class LogicScript : MonoBehaviour
     void Start()
     {   
         spawner = spawnerObject.GetComponent<BallSpawnScript>();
+        spawner.SetLogic();
         ResetGame();
-        ValidateInput();
     }
 
     // Update is called once per frame

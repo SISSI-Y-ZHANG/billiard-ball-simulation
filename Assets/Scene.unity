@@ -149,14 +149,14 @@ RectTransform:
   m_GameObject: {fileID: 88291352}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 289.94528, y: 289.94528, z: 289.94528}
+  m_LocalScale: {x: 4.3524814, y: 4.3524814, z: 4.3524814}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1180159430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13, y: -136}
+  m_AnchoredPosition: {x: -1408.47, y: -793.81}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &88291354
@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 1471786463}
   - component: {fileID: 1471786462}
   m_Layer: 0
-  m_Name: LogicManager
+  m_Name: LogicManager (stay on top)
   m_TagString: Logic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 1681614960}
   - component: {fileID: 1681614959}
   m_Layer: 0
-  m_Name: BallSpawner
+  m_Name: BallSpawner (stay on bottom)
   m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1309,8 +1309,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 2466250751
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.57254905}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
