@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using System.Configuration;
 
 public enum ForceType
 {
@@ -81,8 +82,8 @@ public class LogicScript : MonoBehaviour
         get { return forceRadius; }
     }
 
-    [SerializeField] float movingIncrement = 0.05f; // (0, 0.15]
-    public float MovingIncrement
+    [SerializeField] double movingIncrement = 0.05; // (0, 0.15]
+    public double MovingIncrement
     {
         get { return movingIncrement; }
     }
@@ -158,6 +159,63 @@ public class LogicScript : MonoBehaviour
     // -------------------------------------------------------------------------------------------- //
     // -------------------------------------- custom methods -------------------------------------- //
     // -------------------------------------------------------------------------------------------- //
+
+    // -------------------------------------- GUI -------------------------------------- //
+
+    public void UpdateQuantity(int quantity)
+    {
+        quantityText.text = quantity.ToString();
+    }
+
+    void ManageGame()
+    {
+        if (paused)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) == true)
+            {
+                ResumeGame();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) == true)
+            {
+                ResetGame();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space) == true)
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    void PauseGame()
+    {
+        paused = true;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    void ResumeGame()
+    {
+        paused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    void ResetGame()
+    {
+        spawner.DeleteAllBall();
+        ValidateInput();
+        spawner.SpawnNewBall();
+
+        ResumeGame();
+    }
+
+    // --------------------------------------  -------------------------------------- //
+
+    // -------------------------------------- Inputs -------------------------------------- //
 
     void ValidateInput()
     {
@@ -251,57 +309,5 @@ public class LogicScript : MonoBehaviour
             forcePosOrNeg = -1;
         }
     }
-
-    // -------------------------------------- GUI -------------------------------------- //
-
-    public void UpdateQuantity(int quantity)
-    {
-        quantityText.text = quantity.ToString();
-    }
-
-    void ManageGame()
-    {
-        if (paused)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) == true)
-            {
-                ResumeGame();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Return) == true)
-            {
-                ResetGame();
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space) == true)
-            {
-                PauseGame();
-            }
-        }
-    }
-
-    void PauseGame()
-    {
-        paused = true;
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    void ResumeGame()
-    {
-        paused = false;
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    void ResetGame()
-    {
-        spawner.DeleteAllBall();
-        ValidateInput();
-        spawner.SpawnNewBall();
-
-        ResumeGame();
-    }
 }
+
