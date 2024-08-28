@@ -17,6 +17,8 @@ public class LogicScript : MonoBehaviour
     [SerializeField] GameObject spawnerObject;
     BallSpawnScript spawner;
 
+    InputValue input;
+
     // -------------------------------------- GUI -------------------------------------- //
 
     [SerializeField] GameObject pauseMenu;
@@ -30,39 +32,39 @@ public class LogicScript : MonoBehaviour
 
     // -------------------------------------- balls -------------------------------------- //
 
-    [SerializeField] int regularBallQuantity = 200; // [0, 500]
+    int regularBallQuantity = 200; // [0, 500]
     public int RegularBallQuantity
     {
         get { return regularBallQuantity; }
         //set { ballQuantity = value; }
     }
 
-    [SerializeField] bool randomizeBallSize = true;
+    bool randomizeBallSize = true;
     public bool RandomizeBallSize
     {
         get { return randomizeBallSize;}
     }
 
-    [SerializeField] float velocityConstant = 1; // (0, 1.5]
+    float velocityConstant = 1f; // (0, 1.5]
     public float VelocityConstant
     {
         get { return velocityConstant; }
     }
 
-    [SerializeField] float diameterConstant = 1; // (0, 1.5]
+    float diameterConstant = 1f; // (0, 1.5]
     public float DiameterConstant
     {
         get { return diameterConstant; }
     }
     
     // -------------------------------------- special balls -------------------------------------- //
-    [SerializeField] int specialBallQuantity = 3; // [0, 50]
+    int specialBallQuantity = 3; // [0, 50]
     public int SpecialBallQuantity
     {
         get { return specialBallQuantity; }
     }
 
-    [SerializeField] ForceType forceType;
+    ForceType forceType;
 
     int forcePosOrNeg; // {0, 1, -1}
     public int ForcePosOrNeg
@@ -70,35 +72,37 @@ public class LogicScript : MonoBehaviour
         get { return forcePosOrNeg;}
     }
 
-    [SerializeField] float forceConstant = 60; // (0, 200]
+    float forceConstant = 60f; // (0, 200]
     public float ForceConstant
     {
         get { return forceConstant; }
     }
 
-    [SerializeField] float forceRadius = 20; // (0, 100]
+    float forceRadius = 20f; // (0, 100]
     public float ForceRadius
     {
         get { return forceRadius; }
     }
 
-    [SerializeField] double movingIncrement = 0.05; // (0, 0.15]
+    double movingIncrement = 0.05; // (0, 0.15]
     public double MovingIncrement
     {
         get { return movingIncrement; }
     }
 
-    [SerializeField] double angleIncrement = 0.02; // (0, 0.15]
+    double angleIncrement = 0.02; // (0, 0.15]
     public double AngleIncrement
     {
         get { return angleIncrement; }
     }
 
-    [SerializeField] bool colorSpecialBall = true;
+    bool colorSpecialBall = true;
     public bool ColorSpecialBall
     {
         get { return colorSpecialBall; }
     }
+
+    // -------------------------------------- special ball appearance -------------------------------------- //
 
     [SerializeField] Color specialBallColor = new Color(0.34f, 0.79f, 0.76f, 1);
     public Color SpecialBallColor
@@ -169,21 +173,25 @@ public class LogicScript : MonoBehaviour
 
     void ManageGame()
     {
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
         if (paused)
         {
-            if (Input.GetKeyDown(KeyCode.Space) == true)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 ResumeGame();
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) == true)
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 ResetGame();
             }
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space) == true)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 PauseGame();
             }
@@ -218,18 +226,18 @@ public class LogicScript : MonoBehaviour
 
     void ReadInput() 
     {
-        regularBallQuantity = int.Parse(ConfigurationManager.AppSettings["_regularBallQuantity"]);
-        randomizeBallSize = bool.Parse(ConfigurationManager.AppSettings["_randomizeBallSize"]);
-        velocityConstant = float.Parse(ConfigurationManager.AppSettings["_velocityConstant"]);
-        diameterConstant = float.Parse(ConfigurationManager.AppSettings["_diameterConstant"]);
+        /*regularBallQuantity = input._regularBallQuantity;
+        randomizeBallSize = input._randomizeBallSize;
+        velocityConstant = input._velocityConstant;
+        diameterConstant = input._diameterConstant;
 
-        specialBallQuantity = int.Parse(ConfigurationManager.AppSettings["_specialBallQuantity"]);
-        forceType = (ForceType) Enum.Parse(typeof(ForceType), ConfigurationManager.AppSettings["_forceType"]);
-        forceConstant = float.Parse(ConfigurationManager.AppSettings["_forceConstant"]);
-        forceRadius = float.Parse(ConfigurationManager.AppSettings["_forceRadius"]);
-        movingIncrement = double.Parse(ConfigurationManager.AppSettings["_movingIncrement"]);
-        angleIncrement = double.Parse(ConfigurationManager.AppSettings["_angleIncrement"]);
-        colorSpecialBall = bool.Parse(ConfigurationManager.AppSettings["_colorSpecialBall"]);
+        specialBallQuantity = input._specialBallQuantity;
+        forceType = (ForceType) Enum.Parse(typeof(ForceType), input._forceType);
+        forceConstant = input._forceConstant;
+        forceRadius = input._forceRadius;
+        movingIncrement = input._movingIncrement;
+        angleIncrement = input._angleIncrement;
+        colorSpecialBall = input._colorSpecialBall;*/
     }
 
     void ValidateInput()
