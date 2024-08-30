@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Configuration;
+using Unity.VisualScripting;
 
 public enum ForceType
 {
@@ -17,6 +18,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] GameObject spawnerObject;
     BallSpawnScript spawner;
 
+    [SerializeField] GameObject inputObject;
     InputValue input;
 
     // -------------------------------------- GUI -------------------------------------- //
@@ -148,7 +150,8 @@ public class LogicScript : MonoBehaviour
     {   
         spawner = spawnerObject.GetComponent<BallSpawnScript>();
         spawner.SetLogic();
-        ResetGame();
+        input = inputObject.GetComponent<InputValue>();
+        PauseGame();
     }
 
     // Update is called once per frame
@@ -184,7 +187,7 @@ public class LogicScript : MonoBehaviour
                 ResumeGame();
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.RightShift))
             {
                 ResetGame();
             }
@@ -216,7 +219,6 @@ public class LogicScript : MonoBehaviour
     {
         spawner.DeleteAllBall();
         ReadInput();
-        ValidateInput();
         spawner.SpawnNewBall();
 
         ResumeGame();
@@ -226,96 +228,22 @@ public class LogicScript : MonoBehaviour
 
     void ReadInput() 
     {
-        /*regularBallQuantity = input._regularBallQuantity;
+        regularBallQuantity = input._regularBallQuantity;
         randomizeBallSize = input._randomizeBallSize;
         velocityConstant = input._velocityConstant;
         diameterConstant = input._diameterConstant;
 
         specialBallQuantity = input._specialBallQuantity;
         forceType = (ForceType) Enum.Parse(typeof(ForceType), input._forceType);
+        SetForceTypeValue();
         forceConstant = input._forceConstant;
         forceRadius = input._forceRadius;
         movingIncrement = input._movingIncrement;
         angleIncrement = input._angleIncrement;
-        colorSpecialBall = input._colorSpecialBall;*/
+        colorSpecialBall = input._colorSpecialBall;
     }
 
-    void ValidateInput()
-    {
-        SetForceTypeValue();
 
-        if (regularBallQuantity < 0)
-        {
-            regularBallQuantity = 0;
-        }
-        else if (regularBallQuantity > 500)
-        {
-            regularBallQuantity = 500;
-        }
-
-        if (velocityConstant <= 0)
-        {
-            velocityConstant = 0.001f;
-        }
-        else if (velocityConstant > 1.5f)
-        {
-            velocityConstant = 1.5f;
-        }
-
-        if (diameterConstant <= 0)
-        {
-            diameterConstant = 0.001f;
-        }
-        else if (diameterConstant > 1.5f)
-        {
-            diameterConstant = 1.5f;
-        }
-
-        if (specialBallQuantity < 0)
-        {
-            specialBallQuantity = 0;
-        }
-        else if (specialBallQuantity > 50)
-        {
-            specialBallQuantity = 50;
-        }
-
-        if (forceConstant <= 0)
-        {
-            forceConstant = 0.001f;
-        }
-        else if (forceConstant > 200)
-        {
-            forceConstant = 200;
-        }
-
-        if (forceRadius <= 0)
-        {
-            forceRadius = 0.001f;
-        }
-        else if (forceRadius > 100)
-        {
-            forceRadius = 100;
-        }
-
-        if (movingIncrement <= 0)
-        {
-            movingIncrement = 0.0001f;
-        }
-        else if (movingIncrement > 0.1f)
-        {
-            movingIncrement = 0.15f;
-        }
-
-        if (angleIncrement <= 0)
-        {
-            angleIncrement = 0.0001f;
-        }
-        else if (angleIncrement > 0.1f)
-        {
-            angleIncrement = 0.15f;
-        }
-    }
 
     void SetForceTypeValue()
     {
