@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class InputValue: MonoBehaviour
 {
+
+    public bool _displayQuantityText = true;
+    public void UpdateDisplayQuantityText(bool b)
+    {
+        _displayQuantityText = b;
+    }
     // the comments are the bounds for values
 
     // -------------------------------------- balls -------------------------------------- //
@@ -61,7 +67,7 @@ public class InputValue: MonoBehaviour
         }
         else if (n == 2)
         {
-            _forceType = "Attract";
+            _forceType = "None";
         }
         else
         {

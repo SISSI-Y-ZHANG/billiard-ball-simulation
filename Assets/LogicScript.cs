@@ -228,6 +228,8 @@ public class LogicScript : MonoBehaviour
 
     void ReadInput() 
     {
+        quantityText.enabled = input._displayQuantityText;
+
         regularBallQuantity = input._regularBallQuantity;
         randomizeBallSize = input._randomizeBallSize;
         velocityConstant = input._velocityConstant;
