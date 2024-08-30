@@ -66,8 +66,6 @@ public class MovingScript : BallScript
     {
         RegularBallSetup();
 
-        
-
         label = logic.LabelSpecialBall;
 
         movingIncrement = logic.MovingIncrement * logic.VelocityConstant * spawner.Scaler;

@@ -44,7 +44,7 @@ public class LogicScript : MonoBehaviour
     bool randomizeBallSize = true;
     public bool RandomizeBallSize
     {
-        get { return randomizeBallSize;}
+        get { ;return randomizeBallSize;}
     }
 
     float velocityConstant = 1f; // (0, 1.5]
@@ -187,7 +187,7 @@ public class LogicScript : MonoBehaviour
                 ResumeGame();
             }
 
-            if (Input.GetKeyDown(KeyCode.RightShift))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 ResetGame();
             }

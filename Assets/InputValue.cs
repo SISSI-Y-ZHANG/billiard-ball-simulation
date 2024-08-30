@@ -15,18 +15,25 @@ public class InputValue: MonoBehaviour
     }
 
     public bool _randomizeBallSize = true;
+    public void UpdateRandomizeBallSize(bool b)
+    {
+        //Debug.Log("" + b);
+        _randomizeBallSize = b;
+    }
 
     public float _velocityConstant = 1f; // (0, 1.5]
     public void UpdateVelocityConstant(string s)
     {
-        Debug.Log(float.TryParse(s, out _));
+        //Debug.Log(s);
+        //Debug.Log(float.TryParse(s, out _));
         _velocityConstant = float.Parse(s);
     }
 
     public float _diameterConstant = 1f; // (0, 1.5]
     public void UpdateDiameterConstant(string s) 
     {
-        Debug.Log(float.TryParse(s, out _));
+        //Debug.Log(s);
+        //Debug.Log(float.TryParse(s, out _));
         _diameterConstant = float.Parse(s);
     }
 
@@ -36,15 +43,27 @@ public class InputValue: MonoBehaviour
     public int _specialBallQuantity = 4; // [0, 50]
     public void UpdateSpecialBallQuantity(string s)
     {
-        Debug.Log(int.TryParse(s, out _));
+        //Debug.Log(s);
+        //Debug.Log(int.TryParse(s, out _));
         _specialBallQuantity = int.Parse(s);
     }
 
     public string _forceType = "Repel"; // None, Repel, Attract
-    public void UpdateForceType(string s)
+    public void UpdateForceType(int n)
     {
-        _forceType = s;
-        if (_forceType != "None" || _forceType != "Repel" || _forceType != "Attract")
+        if (n == 0) 
+        {
+            _forceType = "Repel";
+        }
+        else if (n == 1)
+        {
+            _forceType = "Attract";
+        }
+        else if (n == 2)
+        {
+            _forceType = "Attract";
+        }
+        else
         {
             _forceType = "None";
         }
@@ -53,32 +72,41 @@ public class InputValue: MonoBehaviour
     public float _forceConstant = 60f; // (0, 200]
     public void UpdateForceConstant(string s)
     {
-        Debug.Log(float.TryParse(s, out _));
+        //Debug.Log(s);
+        //Debug.Log(float.TryParse(s, out _));
         _forceConstant = float.Parse(s);
     }
 
     public float _forceRadius = 20f; // (0, 100]
     public void UpdateForceRadius(string s) 
     {
-        Debug.Log(float.TryParse(s, out _));
+        //Debug.Log(s);
+        //Debug.Log(float.TryParse(s, out _));
         _forceRadius = float.Parse(s);
     }
 
     public double _movingIncrement = 0.05; // (0, 0.15]
     public void UpdateMovingIncrement(string s)
     {
-        Debug.Log(double.TryParse(s, out _));
+        //Debug.Log(s);
+        //Debug.Log(double.TryParse(s, out _));
         _movingIncrement = double.Parse(s);
     }
 
     public double _angleIncrement = 0.02; // (0, 0.15]
     public void UpdateAngleIncrement(string s)
     {
-        Debug.Log(double.TryParse(s, out _));
+        //Debug.Log(s);
+        //Debug.Log(double.TryParse(s, out _));
         _angleIncrement = double.Parse(s);
     }
 
     public bool _colorSpecialBall = true;
+    public void UpdateColorSpecialBall(bool b)
+    {
+        //Debug.Log("" + b);
+        _colorSpecialBall = b;
+    }
 
     void ValidateInput()
     {

@@ -208,7 +208,7 @@ public class BallSpawnScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftBracket) == true)
         {
-            if (balls.Count != 0)
+            if (specialBalls.Count != 0)
             {
                 DeleteSpecialBall(specialBalls[0]); 
                 AdjustScalar(ballQuantity);
@@ -234,7 +234,7 @@ public class BallSpawnScript : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftBracket) == true)
         {
             keyInputTimer += 1;
-            if (balls.Count != 0)
+            if (specialBalls.Count != 0)
             {
                 if (keyInputTimer > 60 && keyInputTimer % 30 == 0)
                 {
